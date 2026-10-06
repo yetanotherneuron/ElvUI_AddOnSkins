@@ -16,12 +16,16 @@ S:AddCallbackForAddon("Clique", "Clique", function()
 	if not E.private.addOnSkins.Clique then return end
 
 	E:Delay(0.5, function()
-		CliquePulloutTab:StyleButton(nil, true)
-		CliquePulloutTab:SetTemplate("Default", true)
-		CliquePulloutTab:GetNormalTexture():SetTexCoord(unpack(E.TexCoords))
-		CliquePulloutTab:GetNormalTexture():SetInside()
-		CliquePulloutTab:GetRegions():Hide()
+		if CliquePulloutTab then
+			CliquePulloutTab:StyleButton(nil, true)
+			CliquePulloutTab:SetTemplate("Default", true)
+			CliquePulloutTab:GetNormalTexture():SetTexCoord(unpack(E.TexCoords))
+			CliquePulloutTab:GetNormalTexture():SetInside()
+			CliquePulloutTab:GetRegions():Hide()
+		end
 	end)
+
+	if not Clique.CreateOptionsFrame then return end
 
 	local function SkinFrame(frame)
 		frame:StripTextures()
