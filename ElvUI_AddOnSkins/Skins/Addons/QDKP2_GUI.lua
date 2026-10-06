@@ -182,4 +182,34 @@ S:AddCallbackForAddon("QDKP2_GUI", "QDKP2_GUI", function()
 	S:HandleEditBox(QDKP2frame6_ReasonBox)
 	S:HandleButton(QDKP2_modify_log_entry_Apply)
 	S:HandleButton(QDKP2_modify_log_entry_Cancel)
+
+	-- Raid loot frame
+	if QDKP2_RaidLootFrame then
+		QDKP2_RaidLootFrame:StripTextures()
+		QDKP2_RaidLootFrame:CreateBackdrop("Transparent")
+
+		S:HandleCloseButton(QDKP2_RaidLootCloseButton, QDKP2_RaidLootFrame)
+		S:HandleButton(QDKP2_RaidLootItemButton)
+		S:HandleEditBox(QDKP2_RaidLootItemIDBox)
+		S:HandleButton(QDKP2_RaidLootItemClear)
+
+		for _, key in ipairs({"includeBIS", "includeAlternative", "includeOptional", "bidding", "bisOverMS", "raidWarning", "autoClose"}) do
+			S:HandleCheckBox(_G["QDKP2_RaidLootCheck_" .. key])
+		end
+
+		for _, name in ipairs({
+			"QDKP2_RaidLootMS",
+			"QDKP2_RaidLootOS",
+			"QDKP2_RaidLootDE",
+			"QDKP2_RaidLootBIS",
+			"QDKP2_RaidLootAlternative",
+			"QDKP2_RaidLootOptional",
+			"QDKP2_RaidLootCloseRound",
+			"QDKP2_RaidLootWinner",
+			"QDKP2_RaidLootReopen",
+			"QDKP2_RaidLootCancelRound",
+		}) do
+			S:HandleButton(_G[name])
+		end
+	end
 end)

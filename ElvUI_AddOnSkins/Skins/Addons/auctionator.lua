@@ -12,8 +12,7 @@ local GetItemIcon = GetItemIcon
 local GetItemInfo = GetItemInfo
 local GetItemQualityColor = GetItemQualityColor
 
--- Auctionator 2.6.3
--- https://www.curseforge.com/wow/addons/auctionator/files/426882
+-- Auctionator 2.6.8
 
 S:AddCallbackForAddon("Auctionator", "Auctionator", function()
 	if not E.private.addOnSkins.Auctionator then return end
@@ -77,6 +76,21 @@ S:AddCallbackForAddon("Auctionator", "Auctionator", function()
 	Atr_Confirm_Frame:SetTemplate("Transparent")
 	S:HandleButton(Atr_Confirm_Cancel)
 	S:HandleButton((select(2, Atr_Confirm_Frame:GetChildren())))
+
+	-- Memorize stacking dialog
+	Atr_MemorizeFrame:StripTextures()
+	Atr_MemorizeFrame:SetTemplate("Transparent")
+	S:HandleEditBox(Atr_Mem_EB_itemName)
+	S:HandleEditBox(Atr_Mem_EB_stackSize)
+	S:HandleDropDownBox(Atr_Mem_DD_numStacks)
+	S:HandleButton(Atr_Mem_Forget)
+	S:HandleButton(Atr_Mem_Cancel)
+
+	for _, child in ipairs({Atr_MemorizeFrame:GetChildren()}) do
+		if child:IsObjectType("Button") and child ~= Atr_Mem_Forget and child ~= Atr_Mem_Cancel then
+			S:HandleButton(child)
+		end
+	end
 
 	local SELL_TAB = 1
 	local BUY_TAB = 3
@@ -379,6 +393,7 @@ S:AddCallbackForAddon("Auctionator", "Auctionator", function()
 	AuctionatorDescriptionFrame:SetTemplate("Transparent")
 
 	Atr_Stacking_List:SetTemplate("Transparent")
+	S:HandleScrollBar(Atr_Stacking_ScrollFrameScrollBar)
 
 	S:HandleCheckBox(AuctionatorOption_Enable_Alt_CB)
 	S:HandleCheckBox(AuctionatorOption_Open_All_Bags_CB)
