@@ -21,8 +21,10 @@ S:AddCallbackForAddon("QDKP2_GUI", "QDKP2_GUI", function()
 	QDKP2_frame2_title_net:Size(60, 14)
 	QDKP2_frame2_title_total:Size(60, 14)
 	QDKP2_frame2_title_spent:Size(60, 14)
-	QDKP2_Frame2_Bid_Item:ClearAllPoints()
-	QDKP2_Frame2_Bid_Item:Point("BottomLeft", QDKP2_frame2_showRaid, "BottomLeft", - 60, - 2)
+	if QDKP2_Frame2_Bid_Item then
+		QDKP2_Frame2_Bid_Item:ClearAllPoints()
+		QDKP2_Frame2_Bid_Item:Point("BottomLeft", QDKP2_frame2_showRaid, "BottomLeft", - 60, - 2)
+	end
 
 	for i = 10, 29 do
 		local child = select(i, QDKP2_Frame2:GetChildren())
@@ -58,12 +60,24 @@ S:AddCallbackForAddon("QDKP2_GUI", "QDKP2_GUI", function()
 	S:HandleButton(QDKP2_Frame2_SortBtn_deltatotal)
 	S:HandleButton(QDKP2_Frame2_SortBtn_deltaspent)
 	S:HandleButton(QDKP2_frame2_showRaid)
-	S:HandleButton(QDKP2_Frame2_Bid_Button)
-	S:HandleButton(QDKP2_Frame2_Bid_ButtonWin)
-	S:HandleButton(QDKP2_Frame2_SortBtn_roll)
-	S:HandleButton(QDKP2_Frame2_SortBtn_bid)
-	S:HandleButton(QDKP2_Frame2_SortBtn_value)
-	S:HandleEditBox(QDKP2_Frame2_Bid_Item)
+	if QDKP2_Frame2_Bid_Button then
+		S:HandleButton(QDKP2_Frame2_Bid_Button)
+	end
+	if QDKP2_Frame2_Bid_ButtonWin then
+		S:HandleButton(QDKP2_Frame2_Bid_ButtonWin)
+	end
+	if QDKP2_Frame2_SortBtn_roll then
+		S:HandleButton(QDKP2_Frame2_SortBtn_roll)
+	end
+	if QDKP2_Frame2_SortBtn_bid then
+		S:HandleButton(QDKP2_Frame2_SortBtn_bid)
+	end
+	if QDKP2_Frame2_SortBtn_value then
+		S:HandleButton(QDKP2_Frame2_SortBtn_value)
+	end
+	if QDKP2_Frame2_Bid_Item then
+		S:HandleEditBox(QDKP2_Frame2_Bid_Item)
+	end
 	S:HandleCheckBox(QDKP2frame2_selectList_guild)
 	if QDKP2frame2_selectList_guildOnline then
 		S:HandleCheckBox(QDKP2frame2_selectList_guildOnline)
